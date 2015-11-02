@@ -28,7 +28,6 @@
 	</div><!-- .entry-summary -->
     
     <div class="read-more-link">
-        <?php the_title( sprintf( '<a href="%s" rel="bookmark">More ', esc_url( get_permalink() ) ), '</a>' ); ?>
-    </div>
+        <a href="<?php echo the_permalink();?>" rel="bookmark">Read More</a>     </div>
 </article><!-- #post-## -->
 

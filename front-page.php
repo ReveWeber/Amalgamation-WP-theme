@@ -23,10 +23,11 @@ get_header( 'front' ); ?>
             </div>
             
             <div id="front-page-panel-2" class="front-page-panel">
+                <div class="supertitle">Latest Blog Post</div>
             <?php 
-                $my_query = new WP_Query( array ( 'pagename' => 'about',) );
+                $my_query = new WP_Query( array ( 'post_type' => 'post', 'posts_per_page' => 1, 'ignore_sticky_posts' => 1,) );
                 while ( $my_query->have_posts() ) : $my_query->the_post();
-                    get_template_part( 'template-parts/content', 'front' );
+                    get_template_part( 'template-parts/content', 'front-posts' );
                 endwhile; 
             ?>            
             </div>

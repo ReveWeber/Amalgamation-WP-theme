@@ -118,6 +118,18 @@ function amalgamation_widgets_init() {
 }
 add_action( 'widgets_init', 'amalgamation_widgets_init' );
 
+/* Add proportional thumbnail image size for front page */
+add_image_size( 'proportional-thumbnail', 150, 150 );
+
+add_filter( 'image_size_names_choose', 'amalgamation_custom_sizes' );
+
+function amalgamation_custom_sizes( $sizes ) {
+    return array_merge( $sizes, array(
+        'proportional-thumbnail' => __( 'Proportional Thumbnail' ),
+    ) );
+}
+
+
 /**
  * Enqueue scripts and styles.
  */

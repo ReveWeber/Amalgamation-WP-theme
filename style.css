@@ -917,12 +917,44 @@ body {
 .front-page-panel {
     border: 3px solid #330000;
     margin: 0 0 2em;
-    padding: 1em;
+    padding: 0 2em;
     border-radius: 1em;
 }
 
 .front-page-panel-wrapper {
     margin-top: 2em;
+}
+
+.supertitle {
+    text-align: center;
+    border-bottom: 1px solid #300;
+}
+
+.front-page .hentry {
+    border: none;
+}
+
+.front-page .entry-summary {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.front-page .read-more-link {
+    border: 1px solid #f4ead2;
+    background: #fffff2;
+    background: linear-gradient(to bottom left, #fffff2, #f4ead2);
+    border-bottom:1px solid #AD9991;
+    border-left:1px solid #AD9991;
+-moz-box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);-webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);
+    width: auto;
+    float: right;
+    border-radius: 0.5em;
+    padding: 0 0.5em;
+}
+
+.front-page .read-more-link a {
+    color: #300;
+    text-decoration: none;
 }
 
 @media screen and (min-width: 725px) {
