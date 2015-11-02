@@ -76,6 +76,14 @@ function amalgamation_setup() {
 		'default-color' => 'ffffff',
 		'default-image' => '',
 	) ) );
+    
+    /**
+     * Enables the Excerpt meta box in Page edit screen.
+     */
+    function amalgamation_add_excerpt_support_for_pages() {
+        add_post_type_support( 'page', 'excerpt' );
+    }
+    add_action( 'init', 'amalgamation_add_excerpt_support_for_pages' );
 }
 endif; // amalgamation_setup
 add_action( 'after_setup_theme', 'amalgamation_setup' );
@@ -99,9 +107,9 @@ add_action( 'after_setup_theme', 'amalgamation_content_width', 0 );
  */
 function amalgamation_widgets_init() {
 	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'amalgamation' ),
+		'name'          => esc_html__( 'Footer', 'amalgamation' ),
 		'id'            => 'sidebar-1',
-		'description'   => '',
+		'description'   => 'Widgets to appear in the footer of the page',
 		'before_widget' => '<aside id="%1$s" class="masonry-item widget %2$s">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h2 class="widget-title">',

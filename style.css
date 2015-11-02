@@ -796,6 +796,13 @@ a:active {
 # Content
 --------------------------------------------------------------*/
 
+html,
+body {
+	margin:0;
+	padding:0;
+	height:100%;
+}
+
 .site {
     max-width: 800px;
     margin: 0 auto;
@@ -884,6 +891,52 @@ a:active {
     .page-content, .entry-content, .entry-summary {
         margin-left: 0;
         margin-right: 0;
+    }
+}
+
+/* Front Page */
+
+.front-page {
+	min-height: 100%;
+	position: relative;
+}
+
+.front-page-panel-wrapper {
+	padding-bottom: 3em; /* Height of the footer element */
+}
+
+.front-footer {
+	width: 100%;
+    height: 3em;
+    padding: 1em 0;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+.front-page-panel {
+    border: 3px solid #330000;
+    margin: 0 0 2em;
+    padding: 1em;
+    border-radius: 1em;
+}
+
+.front-page-panel-wrapper {
+    margin-top: 2em;
+}
+
+@media screen and (min-width: 725px) {
+    .front-page-panel-wrapper {
+        display: table;
+        border-spacing: 2em;
+        margin: -2em;
+    }
+    .front-page-pair {
+        display: table-row;
+    }
+    .front-page-panel {
+        display: table-cell;
+        width: 50%;
     }
 }
 
