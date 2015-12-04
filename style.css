@@ -1,6 +1,6 @@
 /*
 Theme Name: Amalgamation
-Theme URI: http://underscores.me/
+Theme URI: http://rweber.net/amalgamation
 Author: Rebecca Weber
 Author URI: http://rweber.net
 Description: A theme designed to be the hub of multiple online presences, with a paneled front page suitable for pointing outward to other sites.
@@ -23,39 +23,53 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
-# Normalize
-# Typography
-# Elements
-# Forms
-# Navigation
-	## Links
-	## Menus
-# Accessibility
-# Alignments
-# Clearings
-# Widgets
-# Content
-    ## Posts and pages
-	## Asides
-	## Comments
-# Infinite scroll
-# Media
-	## Captions
-	## Galleries
+1.0 HTML Elements
+1.1 Buttons and Forms
+1.2 Tables and Lists
+1.3 Images and Links
+2.0 Menus
+3.0 Accessibility
+4.0 Alignments and Clearings
+5.0 Widgets
+6.0 Site Structure
+6.1 Posts and Pages
+6.2 Comments
+7.0 Infinite Scroll
+8.0 Media (including Captions and Galleries)
+9.0 Responsiveness
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
-# Normalize
+1.0 HTML Elements
 --------------------------------------------------------------*/
+
 html {
 	font-family: sans-serif;
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust:     100%;
+	box-sizing: border-box;
+	margin:0;
+	padding:0;
+	height:100%;
 }
 
 body {
-	margin: 0;
+	margin:0;
+	padding:0;
+	height:100%;
     word-wrap: break-word;
+	background: #fff; /* Fallback if no custom background color is defined. */
+    color: #330000;
+	font-family: sans-serif;
+	font-size: 18px;
+	font-size: 1.125rem;
+	line-height: 1.5;
+}
+
+*,
+*:before,
+*:after { /* Inherit box-sizing; see http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+	box-sizing: inherit;
 }
 
 article,
@@ -71,6 +85,10 @@ nav,
 section,
 summary {
 	display: block;
+}
+
+p, cite {
+	margin-bottom: 1.5em;
 }
 
 audio,
@@ -91,17 +109,36 @@ template {
 	display: none;
 }
 
-a {
-	background-color: transparent;
-}
-
-a:active,
-a:hover {
-	outline: 0;
-}
-
 abbr[title] {
 	border-bottom: 1px dotted;
+}
+
+abbr,
+acronym {
+	border-bottom: 1px dotted #300;
+	cursor: help;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: "";
+}
+
+blockquote,
+q {
+	quotes: "" "";
+	margin: 0 1.5em;
+}
+
+blockquote cite {
+    display: block;
+    float: right;
+}
+
+address {
+	margin: 0 0 1.5em;
 }
 
 b,
@@ -109,18 +146,55 @@ strong {
 	font-weight: bold;
 }
 
-dfn {
+dfn,
+cite,
+em,
+i {
 	font-style: italic;
 }
 
 h1 {
 	font-size: 2em;
-	margin: 0.67em 0;
 }
 
-mark {
-	background: #ff0;
-	color: #000;
+h2 {
+    font-size: 1.75em;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
+h4 {
+    font-size: 1.3em;
+}
+
+h5 {
+    font-size: 1.15em;
+}
+
+h6 {
+    font-size: 1em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0.67em 0;
+    clear: both;
+}
+
+mark,
+ins {
+	background: #fff9c0;
+	text-decoration: none;
+}
+
+big {
+	font-size: 125%;
 }
 
 small {
@@ -143,43 +217,56 @@ sub {
 	bottom: -0.25em;
 }
 
-img {
-	border: 0;
-}
-
-svg:not(:root) {
-	overflow: hidden;
-}
-
-figure {
-	margin: 1em 40px;
-}
-
 hr {
 	box-sizing: content-box;
-	height: 0;
+	background-color: #330000;
+	border: 0;
+	height: 1px;
+	margin-bottom: 1.5em;
 }
 
 pre {
+	background: #fffff2;
+	font-family: "Courier 10 Pitch", Courier, monospace;
+	font-size: 15px;
+	font-size: 0.9375rem;
+	line-height: 1.6;
+	margin-bottom: 1.6em;
+	max-width: 100%;
 	overflow: auto;
+	padding: 1.6em;
 }
 
 code,
 kbd,
 pre,
-samp {
-	font-family: monospace, monospace;
+samp,
+tt,
+var {
+	font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
 	font-size: 1em;
 }
 
+code,
+kbd,
+tt,
+var {
+	font-size: 15px;
+	font-size: 0.9375rem;
+}
+
+/*--------------------------------------------------------------
+1.1 Buttons and Forms
+--------------------------------------------------------------*/
+
 button,
 input,
-optgroup,
 select,
 textarea {
-	color: inherit;
-	font: inherit;
-	margin: 0;
+	font-family: sans-serif;
+	font-size: 18px;
+	font-size: 1.125rem;
+	line-height: 1.5;
 }
 
 button {
@@ -197,6 +284,43 @@ input[type="reset"],
 input[type="submit"] {
 	-webkit-appearance: button;
 	cursor: pointer;
+}
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	border: 1px solid;
+	border-color: #330000 #330000 #220000;
+	border-radius: 3px;
+	background: #fffff2;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 15px 17px rgba(255, 255, 255, 0.5), inset 0 -5px 12px rgba(0, 0, 0, 0.05);
+	color: rgba(0, 0, 0, .8);
+	font-size: 12px;
+	font-size: 0.75rem;
+	line-height: 1;
+	padding: .6em 1em .4em;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover {
+	border-color: #300 #200 #100;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 15px 17px rgba(255, 255, 255, 0.8), inset 0 -5px 12px rgba(51, 0, 0, 0.02);
+}
+
+button:focus,
+input[type="button"]:focus,
+input[type="reset"]:focus,
+input[type="submit"]:focus,
+button:active,
+input[type="button"]:active,
+input[type="reset"]:active,
+input[type="submit"]:active {
+	border-color: #100 #200 #300;
+	box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(51, 0, 0, 0.15);
 }
 
 button[disabled],
@@ -235,228 +359,6 @@ input[type="search"]::-webkit-search-decoration {
 	-webkit-appearance: none;
 }
 
-fieldset {
-	border: 1px solid #c0c0c0;
-	margin: 0 2px;
-	padding: 0.35em 0.625em 0.75em;
-}
-
-legend {
-	border: 0;
-	padding: 0;
-}
-
-textarea {
-	overflow: auto;
-}
-
-optgroup {
-	font-weight: bold;
-}
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-td,
-th {
-	padding: 0;
-}
-
-/*--------------------------------------------------------------
-# Typography
---------------------------------------------------------------*/
-body,
-button,
-input,
-select,
-textarea {
-	color: #330000;
-	font-family: sans-serif;
-	font-size: 18px;
-	font-size: 1.125rem;
-	line-height: 1.5;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	clear: both;
-}
-
-p {
-	margin-bottom: 1.5em;
-}
-
-dfn,
-cite,
-em,
-i {
-	font-style: italic;
-}
-
-blockquote {
-	margin: 0 1.5em;
-}
-
-address {
-	margin: 0 0 1.5em;
-}
-
-pre {
-	background: #fffff2;
-	font-family: "Courier 10 Pitch", Courier, monospace;
-	font-size: 15px;
-	font-size: 0.9375rem;
-	line-height: 1.6;
-	margin-bottom: 1.6em;
-	max-width: 100%;
-	overflow: auto;
-	padding: 1.6em;
-}
-
-code,
-kbd,
-tt,
-var {
-	font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
-	font-size: 15px;
-	font-size: 0.9375rem;
-}
-
-abbr,
-acronym {
-	border-bottom: 1px dotted #666;
-	cursor: help;
-}
-
-mark,
-ins {
-	background: #fff9c0;
-	text-decoration: none;
-}
-
-big {
-	font-size: 125%;
-}
-
-/*--------------------------------------------------------------
-# Elements
---------------------------------------------------------------*/
-html {
-	box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after { /* Inherit box-sizing to make it easier to change the property for components that leverage other behavior; see http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
-	box-sizing: inherit;
-}
-
-body {
-	background: #fff; /* Fallback for when there is no custom background color defined. */
-}
-
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-	content: "";
-}
-
-blockquote,
-q {
-	quotes: "" "";
-}
-
-hr {
-	background-color: #330000;
-	border: 0;
-	height: 1px;
-	margin-bottom: 1.5em;
-}
-
-ul,
-ol {
-	margin: 0 0 1.5em 3em;
-}
-
-ul {
-	list-style: disc;
-}
-
-ol {
-	list-style: decimal;
-}
-
-li > ul,
-li > ol {
-	margin-bottom: 0;
-	margin-left: 1.5em;
-}
-
-dt {
-	font-weight: bold;
-}
-
-dd {
-	margin: 0 1.5em 1.5em;
-}
-
-img {
-	height: auto; /* Make sure images are scaled correctly. */
-	max-width: 100%; /* Adhere to container width. */
-}
-
-table {
-	margin: 0 0 1.5em;
-	width: 100%;
-}
-
-/*--------------------------------------------------------------
-# Forms
---------------------------------------------------------------*/
-button,
-input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-	border: 1px solid;
-	border-color: #330000 #330000 #220000;
-	border-radius: 3px;
-	background: #fffff2;
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 15px 17px rgba(255, 255, 255, 0.5), inset 0 -5px 12px rgba(0, 0, 0, 0.05);
-	color: rgba(0, 0, 0, .8);
-	font-size: 12px;
-	font-size: 0.75rem;
-	line-height: 1;
-	padding: .6em 1em .4em;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
-}
-
-button:hover,
-input[type="button"]:hover,
-input[type="reset"]:hover,
-input[type="submit"]:hover {
-	border-color: #300 #200 #100;
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 15px 17px rgba(255, 255, 255, 0.8), inset 0 -5px 12px rgba(51, 0, 0, 0.02);
-}
-
-button:focus,
-input[type="button"]:focus,
-input[type="reset"]:focus,
-input[type="submit"]:focus,
-button:active,
-input[type="button"]:active,
-input[type="reset"]:active,
-input[type="submit"]:active {
-	border-color: #100 #200 #300;
-	box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(51, 0, 0, 0.15);
-}
-
 input[type="text"],
 input[type="email"],
 input[type="url"],
@@ -485,18 +387,97 @@ input[type="search"] {
 	padding: 3px;
 }
 
+fieldset {
+	border: 1px solid #c0c0c0;
+	margin: 0 2px;
+	padding: 0.35em 0.625em 0.75em;
+}
+
+legend {
+	border: 0;
+	padding: 0;
+}
+
 textarea {
+	overflow: auto;
 	padding-left: 3px;
 	width: 100%;
 }
 
+optgroup {
+	font-weight: bold;
+	font: inherit;
+	margin: 0;
+	color: #330000;
+}
+
 /*--------------------------------------------------------------
-# Navigation
+1.2 Tables and Lists
 --------------------------------------------------------------*/
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin: 0 0 1.5em;
+	width: 100%;
+}
+
+td,
+th {
+	padding: 0;
+    padding-right: 1em;
+}
+
+td:last-child, th:last-child {
+    padding-right: 0;
+}
+
+ul,
+ol {
+	margin: 0 0 1.5em 0;
+}
+
+ul {
+	list-style: disc;
+}
+
+ol {
+	list-style: decimal;
+}
+
+li > ul,
+li > ol {
+	margin-bottom: 0;
+}
+
+dt {
+	font-weight: bold;
+}
+
+dd {
+	margin: 0 1.5em 1.5em;
+}
+
 /*--------------------------------------------------------------
-## Links
+1.3 Images and Links
 --------------------------------------------------------------*/
+
+img {
+	border: 0;
+	height: auto; /* Make sure images are scaled correctly. */
+	max-width: 100%; /* Adhere to container width. */
+}
+
+svg:not(:root) {
+	overflow: hidden;
+}
+
+figure {
+	margin: 0;
+}
+
 a {
+	background-color: transparent;
 	color: royalblue;
 }
 
@@ -520,8 +501,9 @@ a:active {
 }
 
 /*--------------------------------------------------------------
-## Menus
+2.0 Menus
 --------------------------------------------------------------*/
+
 .main-navigation {
 	clear: both;
 	display: block;
@@ -534,6 +516,8 @@ a:active {
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
+    position: absolute;
+    background: white;
 }
 
 .main-navigation li {
@@ -614,12 +598,25 @@ a:active {
 	display: block;
 }
 
+.menu-toggle {
+    float: right;
+    margin-top: -3.5em;
+    border-top: 2px solid #300;
+    border-bottom: 2px solid #300;
+    border-left: 0;
+    border-right: 0;
+    text-transform: uppercase;
+    border-radius: 0;
+    color: #300;
+}
+
 @media screen and (min-width: 37.5em) {
 	.menu-toggle {
 		display: none;
 	}
 	.main-navigation ul {
 		display: block;
+        position: relative;
 	}
 }
 
@@ -646,8 +643,9 @@ a:active {
 }
 
 /*--------------------------------------------------------------
-# Accessibility
+3.0 Accessibility
 --------------------------------------------------------------*/
+
 /* Text meant only for screen readers. */
 .screen-reader-text {
 	clip: rect(1px, 1px, 1px, 1px);
@@ -678,18 +676,21 @@ a:active {
 }
 
 /*--------------------------------------------------------------
-# Alignments
+4.0 Alignments and Clearings
 --------------------------------------------------------------*/
+
 .alignleft {
 	display: inline;
 	float: left;
 	margin-right: 1.5em;
+    margin-bottom: 1em;
 }
 
 .alignright {
 	display: inline;
 	float: right;
 	margin-left: 1.5em;
+    margin-bottom: 1em;
 }
 
 .aligncenter {
@@ -697,11 +698,9 @@ a:active {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+    margin-bottom: 1em;
 }
 
-/*--------------------------------------------------------------
-# Clearings
---------------------------------------------------------------*/
 .clear:before,
 .clear:after,
 .entry-content:before,
@@ -728,8 +727,9 @@ a:active {
 }
 
 /*--------------------------------------------------------------
-# Widgets
+5.0 Widgets
 --------------------------------------------------------------*/
+
 .widget {
 	margin: 0 0 1.5em;
     font-size: .88em;
@@ -791,17 +791,9 @@ a:active {
     border-radius: 1em;
 }
 
-
 /*--------------------------------------------------------------
-# Content
+6.0 Site Structure
 --------------------------------------------------------------*/
-
-html,
-body {
-	margin:0;
-	padding:0;
-	height:100%;
-}
 
 .site {
     max-width: 800px;
@@ -828,12 +820,14 @@ body {
 }
 
 /*--------------------------------------------------------------
-## Posts and pages
+6.1 Posts and Pages
 --------------------------------------------------------------*/
+
 .hentry {
 	margin: 0 0 2em;
     padding-bottom: 1em;
     border-bottom: 3px solid #300;
+    overflow: hidden;
 }
 
 .byline,
@@ -874,6 +868,41 @@ body {
     border: 3px solid #300;
     padding: 0 1.5em 1.5em;
     margin-top: 1.5em;
+}
+
+.more-link {
+-moz-box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);-webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);
+    width: auto;
+    float: right;
+    padding: 0 0.5em;
+  background: #fffff2;
+  background-image: -webkit-linear-gradient(top, #fffff2, #f4ead2);
+  background-image: -moz-linear-gradient(top, #fffff2, #f4ead2);
+  background-image: -ms-linear-gradient(top, #fffff2, #f4ead2);
+  background-image: -o-linear-gradient(top, #fffff2, #f4ead2);
+  background-image: linear-gradient(to bottom, #fffff2, #f4ead2);
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
+  color: #330000;
+  border: solid #E2D5BF 1px;
+  text-decoration: none;
+    margin-bottom: 1em;
+}
+
+.more-link:hover {
+  background: #f4ead2;
+  background-image: -webkit-linear-gradient(top, #f4ead2, #fffff2);
+  background-image: -moz-linear-gradient(top, #f4ead2, #fffff2);
+  background-image: -ms-linear-gradient(top, #f4ead2, #fffff2);
+  background-image: -o-linear-gradient(top, #f4ead2, #fffff2);
+  background-image: linear-gradient(to bottom, #f4ead2, #fffff2);
+  text-decoration: none;
+}
+
+.more-link a {
+    color: #300;
+    text-decoration: none;
 }
 
 @media screen and (max-width: 850px) {
@@ -939,22 +968,8 @@ body {
     margin-right: 0;
 }
 
-.front-page .read-more-link {
-    border: 1px solid #f4ead2;
-    background: #fffff2;
-    background: linear-gradient(to bottom left, #fffff2, #f4ead2);
-    border-bottom:1px solid #AD9991;
-    border-left:1px solid #AD9991;
--moz-box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);-webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);
-    width: auto;
-    float: right;
-    border-radius: 0.5em;
-    padding: 0 0.5em;
-}
-
-.front-page .read-more-link a {
-    color: #300;
-    text-decoration: none;
+.front-page .more-link {
+    margin-bottom: 0;
 }
 
 @media screen and (min-width: 725px) {
@@ -973,27 +988,36 @@ body {
 }
 
 /*--------------------------------------------------------------
-## Asides
+6.2 Comments
 --------------------------------------------------------------*/
-.blog .format-aside .entry-title,
-.archive .format-aside .entry-title {
-	display: none;
+
+.comment-list, .children {
+    list-style-type: none;
 }
 
-/*--------------------------------------------------------------
-## Comments
---------------------------------------------------------------*/
+.children {
+    margin-top: 1em;
+}
+
+.comment {
+    margin-bottom: 1em;
+}
+
 .comment-content a {
 	word-wrap: break-word;
 }
 
 .bypostauthor {
 	display: block;
+    background: #fffff2;
+    border-left: 1px solid #300;
+    padding-left: 1em;
 }
 
 /*--------------------------------------------------------------
-# Infinite scroll
+7.0 Infinite Scroll
 --------------------------------------------------------------*/
+
 /* Globally hidden elements when Infinite Scroll is supported and in use. */
 .infinite-scroll .posts-navigation, /* Older / Newer Posts Navigation (always hidden) */
 .infinite-scroll.neverending .site-footer { /* Theme Footer (when set to scrolling) */
@@ -1006,8 +1030,9 @@ body {
 }
 
 /*--------------------------------------------------------------
-# Media
+8.0 Media (including Captions and Galleries)
 --------------------------------------------------------------*/
+
 .page-content .wp-smiley,
 .entry-content .wp-smiley,
 .comment-content .wp-smiley {
@@ -1024,9 +1049,6 @@ object {
 	max-width: 100%;
 }
 
-/*--------------------------------------------------------------
-## Captions
---------------------------------------------------------------*/
 .wp-caption {
 	margin-bottom: 1.5em;
 	max-width: 100%;
@@ -1040,15 +1062,13 @@ object {
 
 .wp-caption .wp-caption-text {
 	margin: 0.8075em 0;
+    font-variant: small-caps;
 }
 
 .wp-caption-text {
 	text-align: center;
 }
 
-/*--------------------------------------------------------------
-## Galleries
---------------------------------------------------------------*/
 .gallery {
 	margin-bottom: 1.5em;
 }
@@ -1094,4 +1114,50 @@ object {
 
 .gallery-caption {
 	display: block;
+}
+/*--------------------------------------------------------------
+9.0 Responsiveness
+--------------------------------------------------------------*/
+
+@media screen and (max-width: 700px) {
+    body {
+        font-size: 14px;
+        font-size: 0.875rem;
+        line-height: 1.25;
+    }
+    
+    pre {
+        font-size: 0.875rem;
+        line-height: 1.5;
+    }
+    
+    .front-page-panel-wrapper {
+        margin-top: 0;
+    }
+    
+    .supertitle {
+        margin-top: 1em;
+    }
+    
+    .widget {
+        font-size: 1em;
+    }
+    
+    .menu-toggle, .more-link {
+        padding: 0.5em;
+        font-size: 0.9375rem;
+    }
+    
+    .site-title, .site-description {
+        float: left;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .alignleft, .alignright {
+        margin-left: 0;
+        margin-right: 0;
+        float: none;
+        display: block;
+    }
 }

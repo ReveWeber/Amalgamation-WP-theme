@@ -21,6 +21,7 @@
 			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'amalgamation' ), 'amalgamation', '<a href="http://rweber.net" rel="designer">Rebecca Weber</a>' ); ?>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
+<a class="skip-link screen-reader-text" href="#"><?php esc_html_e( 'Return to Top', 'amalgamation' ); ?></a>
 </div><!-- #page -->
 
 <?php wp_footer(); ?>

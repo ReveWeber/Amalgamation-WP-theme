@@ -10,10 +10,6 @@
 if ( ! function_exists( 'amalgamation_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
- *
- * Note that this function is hooked into the after_setup_theme hook, which
- * runs before the init hook. The init hook is too late for some features, such
- * as indicating support for post thumbnails.
  */
 function amalgamation_setup() {
 	/*
@@ -57,18 +53,6 @@ function amalgamation_setup() {
 		'comment-list',
 		'gallery',
 		'caption',
-	) );
-
-	/*
-	 * Enable support for Post Formats.
-	 * See https://developer.wordpress.org/themes/functionality/post-formats/
-	 */
-	add_theme_support( 'post-formats', array(
-		'aside',
-		'image',
-		'video',
-		'quote',
-		'link',
 	) );
 
 	// Set up the WordPress core custom background feature.
@@ -128,7 +112,6 @@ function amalgamation_custom_sizes( $sizes ) {
         'proportional-thumbnail' => __( 'Proportional Thumbnail' ),
     ) );
 }
-
 
 /**
  * Enqueue scripts and styles.
