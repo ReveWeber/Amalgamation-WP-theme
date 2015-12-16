@@ -23,7 +23,7 @@ get_header( 'front' ); ?>
             </div>
             
             <div id="front-page-panel-2" class="front-page-panel">
-                <div class="supertitle">Latest Blog Post</div>
+                <div class="supertitle">Latest Blog Post (<a href="<?php echo esc_url( home_url( '/blog/' ) ); ?>">see all</a>)</div>
             <?php 
                 $my_query = new WP_Query( array ( 'post_type' => 'post', 'posts_per_page' => 1, 'ignore_sticky_posts' => 1,) );
                 while ( $my_query->have_posts() ) : $my_query->the_post();
