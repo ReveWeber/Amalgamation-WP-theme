@@ -13,44 +13,44 @@ get_header( 'front' ); ?>
 		<main id="main" class="site-main front-page-panel-wrapper" role="main">
 
             <div class="front-page-pair">
-            <div id="front-page-panel-1" class="front-page-panel">
-            <?php 
-                $my_query = new WP_Query( array ( 'pagename' => 'about',) );
-                while ( $my_query->have_posts() ) : $my_query->the_post();
-                    get_template_part( 'template-parts/content', 'front' );
-                endwhile; 
-            ?>
-            </div>
-            
-            <div id="front-page-panel-2" class="front-page-panel">
-                <div class="supertitle">Latest Blog Post (<a href="<?php echo esc_url( home_url( '/blog/' ) ); ?>">see all</a>)</div>
-            <?php 
-                $my_query = new WP_Query( array ( 'post_type' => 'post', 'posts_per_page' => 1, 'ignore_sticky_posts' => 1,) );
-                while ( $my_query->have_posts() ) : $my_query->the_post();
-                    get_template_part( 'template-parts/content', 'front-posts' );
-                endwhile; 
-            ?>            
-            </div>
+                <div id="front-page-panel-1" class="front-page-panel">
+                    <div class="supertitle">Latest Blog Post (<a href="<?php echo esc_url( home_url( '/blog/' ) ); ?>">see all</a>)</div>
+                    <?php 
+                    $my_query = new WP_Query( array ( 'post_type' => 'post', 'posts_per_page' => 1, 'ignore_sticky_posts' => 1,) );
+                    while ( $my_query->have_posts() ) : $my_query->the_post();
+                        get_template_part( 'template-parts/content', 'front-posts' );
+                    endwhile; 
+                    ?>            
                 </div>
+
+                <div id="front-page-panel-2" class="front-page-panel">
+                    <?php 
+                    $my_query = new WP_Query( array ( 'pagename' => 'about',) );
+                    while ( $my_query->have_posts() ) : $my_query->the_post();
+                        get_template_part( 'template-parts/content', 'front' );
+                    endwhile; 
+                    ?>
+                </div>
+            </div>
             
             <div class="front-page-pair">
-            <div id="front-page-panel-3" class="front-page-panel">
-            <?php 
-                $my_query = new WP_Query( array ( 'pagename' => 'tech',) );
-                while ( $my_query->have_posts() ) : $my_query->the_post();
-                    get_template_part( 'template-parts/content', 'front' );
-                endwhile; 
-            ?>            
-            </div>
+                <div id="front-page-panel-3" class="front-page-panel">
+                <?php 
+                    $my_query = new WP_Query( array ( 'pagename' => 'tech',) );
+                    while ( $my_query->have_posts() ) : $my_query->the_post();
+                        get_template_part( 'template-parts/content', 'front' );
+                    endwhile; 
+                ?>            
+                </div>
 
-            <div id="front-page-panel-4" class="front-page-panel">
-            <?php 
-                $my_query = new WP_Query( array ( 'pagename' => 'craft',) );
-                while ( $my_query->have_posts() ) : $my_query->the_post();
-                    get_template_part( 'template-parts/content', 'front' );
-                endwhile; 
-            ?>            
-            </div>
+                <div id="front-page-panel-4" class="front-page-panel">
+                <?php 
+                    $my_query = new WP_Query( array ( 'pagename' => 'craft',) );
+                    while ( $my_query->have_posts() ) : $my_query->the_post();
+                        get_template_part( 'template-parts/content', 'front' );
+                    endwhile; 
+                ?>            
+                </div>
             </div>
             
 		</main><!-- #main -->
