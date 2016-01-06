@@ -7,6 +7,15 @@
  */
 
 ( function( $ ) {
+    // hide then selectively show the post and page dropdown selectors
+    // li ids are #customize-control-panel_1_post
+    // likewise for 2,3,4 and page
+    // currently display: list-item
+    // radio controls have the name _customize-radio-fp_panel_1
+    // likewise 2,3,4
+    // values are "latest", "post", and "page"
+    // see if WP's Customizer JS has built-ins.
+    
 	// Site title and description.
 	wp.customize( 'blogname', function( value ) {
 		value.bind( function( to ) {
