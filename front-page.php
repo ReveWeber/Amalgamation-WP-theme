@@ -7,6 +7,9 @@
  * @package Amalgamation
  */
 
+if ( 'posts' == get_option( 'show_on_front' ) ) {
+    include( get_home_template() ); 
+} else {
 get_header( 'front' ); ?>
 
 	<div id="primary" class="content-area">
@@ -60,4 +63,4 @@ get_header( 'front' ); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
-<?php get_footer( 'front' ); ?>
+<?php get_footer( 'front' ); } // end else statement ?>

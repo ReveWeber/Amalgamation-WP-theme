@@ -31,16 +31,17 @@ function Amalgamation_Front_Panel_Latest() {
     endwhile;
 }
 
-
 /**
  * Add postMessage support for site title and description for the Theme Customizer.
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
 function amalgamation_customize_register( $wp_customize ) {
-	//$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
-	//$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
-	//$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
+	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
+	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
+	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
+    $wp_customize->remove_section('header_image');
+    $wp_customize->remove_section('background_image');
         
     $wp_customize->add_section( 'front_page_content', array( 
         'title' => __( 'Front Page Content', 'amalgamation' ), 
@@ -62,13 +63,43 @@ function amalgamation_customize_register( $wp_customize ) {
                             <?php } ?>
                         </select>
                     </label>
-                    <?php
+<?php
                }
+        }
+    }
+    if (class_exists('WP_Customize_Control')) {
+        class Show_Hide_Hack_Control extends WP_Customize_Control {
+            public function render_content() {
+                ?>
+                <script>
+                    jQuery(function($) {
+                        for( var i = 1 ; i < 5 ; i++ ) {
+                            $('#customize-control-panel_'+i+'_post').hide();
+                            $('#customize-control-panel_'+i+'_page').hide();
+                        }
+                        $( '#accordion-section-front_page_content' ).click(function() {
+                            for( var i = 1 ; i < 5 ; i++ ) {
+                                if ($('input:radio[name=_customize-radio-fp_panel_'+i+']:checked').val() == 'post') {
+                                    $('#customize-control-panel_'+i+'_post').slideDown();
+                                    $('#customize-control-panel_'+i+'_page').slideUp();
+                                } else if ($('input:radio[name=_customize-radio-fp_panel_'+i+']:checked').val() == 'page') {
+                                    $('#customize-control-panel_'+i+'_page').slideDown();
+                                    $('#customize-control-panel_'+i+'_post').slideUp();
+                                } else {
+                                    $('#customize-control-panel_'+i+'_page').slideUp();
+                                    $('#customize-control-panel_'+i+'_post').slideUp();
+                                }
+                            }
+                        });
+                    });
+                </script>
+                <?php
+            }
         }
     }
     
     $wp_customize->add_setting( 'fp_panel_1', array( 
-        'default' => '', 
+        'default' => 'latest',
         'sanitize_callback' => 'sanitize_text_field',
         //'transport' => 'postMessage', 
     ) );
@@ -108,7 +139,7 @@ function amalgamation_customize_register( $wp_customize ) {
     ) ) );
     
     $wp_customize->add_setting( 'fp_panel_2', array( 
-        'default' => '', 
+        'default' => 'latest',
         'sanitize_callback' => 'sanitize_text_field',
         //'transport' => 'postMessage', 
     ) );
@@ -148,7 +179,7 @@ function amalgamation_customize_register( $wp_customize ) {
     ) ) );
     
     $wp_customize->add_setting( 'fp_panel_3', array( 
-        'default' => '', 
+        'default' => 'latest',
         'sanitize_callback' => 'sanitize_text_field',
         //'transport' => 'postMessage', 
     ) );
@@ -188,7 +219,7 @@ function amalgamation_customize_register( $wp_customize ) {
     ) ) );
     
     $wp_customize->add_setting( 'fp_panel_4', array( 
-        'default' => '', 
+        'default' => 'latest',
         'sanitize_callback' => 'sanitize_text_field',
         //'transport' => 'postMessage', 
     ) );
@@ -226,7 +257,19 @@ function amalgamation_customize_register( $wp_customize ) {
             'section' => 'front_page_content',
             'settings' => 'panel_4_post',
     ) ) );
-    
+    $wp_customize->add_setting( 'panel_control_hack', array(
+        'default' => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( new Show_Hide_Hack_Control( 
+        $wp_customize,
+        'panel_control_hack',
+        array(
+            'label' => '',
+            'section' => 'front_page_content',
+            'settings' => 'panel_control_hack',
+        )
+    ) );
 }
 
 add_action( 'customize_register', 'amalgamation_customize_register' );

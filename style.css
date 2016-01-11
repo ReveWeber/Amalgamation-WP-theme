@@ -379,11 +379,12 @@ table {
     border-spacing: 0;
     margin: 0 0 1.5em;
     width: 100%;
+    display: block;
 }
 td,
 th {
     padding: 0;
-    padding-right: 1em;
+    padding-right: 1.5em;
 }
 td:last-child,
 th:last-child {
@@ -456,6 +457,7 @@ a:active {
     display: block;
     float: left;
     width: 100%;
+    margin-top: 1em;
 }
 .main-navigation ul {
     display: none;
@@ -720,8 +722,12 @@ a:active {
     max-width: 800px;
     margin: 0 auto;
 }
+.site-branding {
+    vertical-align: baseline;
+}
 .site-title {
     display: inline-block;
+    margin-bottom: 0;
 }
 .site-title a,
 .entry-title a {
@@ -730,7 +736,7 @@ a:active {
 }
 .site-description {
     float: right;
-    margin-top: 2.5em;
+    margin-top: 1.25em;
 }
 .site-footer {
     font-size: 0.88em;
@@ -825,6 +831,12 @@ a:active {
         float: none;
         margin-top: 0;
     }
+    .site-title {
+        margin-bottom: 0.67em;
+    }
+    main-navigation {
+        margin-top: 0;
+    }
     .page-content,
     .entry-content,
     .entry-summary {
@@ -873,7 +885,7 @@ a:active {
 .front-page .more-link {
     margin-bottom: 0;
 }
-@media screen and (min-width: 725px) {
+@media screen and (min-width: 701px) {
     .front-page-panel-wrapper {
         display: table;
         border-spacing: 2em;
@@ -1037,9 +1049,13 @@ object {
         font-size: 15px;
         font-size: 0.9375rem;
     }
-    .site-title,
     .site-description {
-        float: left;
+        max-width: 83%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .main-navigation {
+        margin-top: 0;
     }
 }
 @media screen and (max-width: 400px) {
@@ -1049,5 +1065,8 @@ object {
         margin-right: 0;
         float: none;
         display: block;
+    }
+    .site-description {
+        max-width: 80%;
     }
 }
