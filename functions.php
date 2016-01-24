@@ -61,16 +61,17 @@ function amalgamation_setup() {
 		'default-image' => '',
 	) ) );
     
-    /**
-     * Enables the Excerpt meta box in Page edit screen.
-     */
-    function amalgamation_add_excerpt_support_for_pages() {
-        add_post_type_support( 'page', 'excerpt' );
-    }
-    add_action( 'init', 'amalgamation_add_excerpt_support_for_pages' );
 }
 endif; // amalgamation_setup
 add_action( 'after_setup_theme', 'amalgamation_setup' );
+
+/**
+ * Enables the Excerpt meta box in Page edit screen.
+ */
+function amalgamation_add_excerpt_support_for_pages() {
+    add_post_type_support( 'page', 'excerpt' );
+}
+add_action( 'init', 'amalgamation_add_excerpt_support_for_pages' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -151,7 +152,6 @@ require get_template_directory() . '/inc/customizer.php';
 
 /**
  * Add featured images to RSS feed
- * Why does this have to be done manually?
  */
 
 function featuredtoRSS($content) {

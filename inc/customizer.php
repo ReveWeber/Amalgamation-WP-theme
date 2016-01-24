@@ -270,6 +270,26 @@ function amalgamation_customize_register( $wp_customize ) {
             'settings' => 'panel_control_hack',
         )
     ) );
+    
+    $wp_customize->add_section( 'archive_length', array( 
+        'title' => __( 'Blog Archives', 'amalgamation' ), 
+        'description' => __( 'Choose whether blog archive pages show full content or post excerpts.', 'amalgamation' )
+    ) );
+    $wp_customize->add_setting( 'archive_length_setting', array( 
+        'default' => 'full',
+        'sanitize_callback' => 'sanitize_text_field',
+        //'transport' => 'postMessage', 
+    ) );
+    $wp_customize->add_control( 'archive_length_setting', array(
+      'label' => __( 'Blog archives show:', 'amalgamation' ),
+      'section' => 'archive_length',
+      'type' => 'radio',
+      'choices' => array( 
+          'full' => __( 'Full content', 'amalgamation' ), 
+          'excerpt' => __( 'Excerpts', 'amalgamation' ), 
+      ),
+    ) );
+
 }
 
 add_action( 'customize_register', 'amalgamation_customize_register' );

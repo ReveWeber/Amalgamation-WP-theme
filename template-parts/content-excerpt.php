@@ -30,7 +30,7 @@
 	</div><!-- .entry-summary -->
 
 	<footer class="entry-footer">
-		<?php amalgamation_entry_footer(); ?>
+        <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" class="more-link">Read More</a>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->
 

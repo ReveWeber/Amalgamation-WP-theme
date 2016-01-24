@@ -7,13 +7,17 @@
  */
 
 ( function( $ ) {
+    console.log('called');
+    
 	// Site title and description.
 	wp.customize( 'blogname', function( value ) {
+        console.log('name change');
 		value.bind( function( to ) {
 			$( '.site-title a' ).text( to );
 		} );
 	} );
 	wp.customize( 'blogdescription', function( value ) {
+        console.log('description change');
 		value.bind( function( to ) {
 			$( '.site-description' ).text( to );
 		} );
