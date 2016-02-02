@@ -15,7 +15,7 @@ get_header( 'front' ); ?>
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main front-page-panel-wrapper" role="main">
 
-            <!-- functions below are defined in /inc/customizer.php -->
+            <!-- functions below are defined in inc/customizer.php -->
             <div class="front-page-pair">
                 <div id="front-page-panel-1" class="front-page-panel">
                     <?php if (get_theme_mod('fp_panel_1') == 'post') {

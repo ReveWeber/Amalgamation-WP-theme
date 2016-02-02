@@ -8,7 +8,6 @@
 /*
 * Front page helper functions
 */
-
 function Amalgamation_Front_Panel_Post($selectedPostId) {
     $my_query = new WP_Query( array ( 'p' => $selectedPostId,) );
     while ( $my_query->have_posts() ) : $my_query->the_post();
@@ -42,7 +41,7 @@ function amalgamation_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
     $wp_customize->remove_section('header_image');
     $wp_customize->remove_section('background_image');
-        
+    
     $wp_customize->add_section( 'front_page_content', array( 
         'title' => __( 'Front Page Content', 'amalgamation' ), 
         'description' => __( 'Content of panels of static front page. Does not apply if your front page is your blog archive.', 'amalgamation' )
@@ -52,53 +51,23 @@ function amalgamation_customize_register( $wp_customize ) {
     // https://github.com/tommusrhodus/wp-cusomizer-posts-dropdown    
     if (class_exists('WP_Customize_Control')) {
         class Post_Dropdown_Control extends WP_Customize_Control {
-              public function render_content() {
-                    ?>
-                    <label>
-                        <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-                        <select data-customize-setting-link="<?php echo $this->id; ?>">
-                            <?php  $posts = get_posts('numberposts=-1');
-                            foreach ( $posts as $post ) { ?>
-                                <option value="<?php echo $post->ID; ?>" <?php if ( get_theme_mod($this->id) == $post->ID ) echo 'selected="selected"'; ?>><?php echo $post->post_title; ?></option>
-                            <?php } ?>
-                        </select>
-                    </label>
-<?php
-               }
-        }
-    }
-    if (class_exists('WP_Customize_Control')) {
-        class Show_Hide_Hack_Control extends WP_Customize_Control {
             public function render_content() {
                 ?>
-                <script>
-                    jQuery(function($) {
-                        for( var i = 1 ; i < 5 ; i++ ) {
-                            $('#customize-control-panel_'+i+'_post').hide();
-                            $('#customize-control-panel_'+i+'_page').hide();
-                        }
-                        $( '#accordion-section-front_page_content' ).click(function() {
-                            for( var i = 1 ; i < 5 ; i++ ) {
-                                if ($('input:radio[name=_customize-radio-fp_panel_'+i+']:checked').val() == 'post') {
-                                    $('#customize-control-panel_'+i+'_post').slideDown();
-                                    $('#customize-control-panel_'+i+'_page').slideUp();
-                                } else if ($('input:radio[name=_customize-radio-fp_panel_'+i+']:checked').val() == 'page') {
-                                    $('#customize-control-panel_'+i+'_page').slideDown();
-                                    $('#customize-control-panel_'+i+'_post').slideUp();
-                                } else {
-                                    $('#customize-control-panel_'+i+'_page').slideUp();
-                                    $('#customize-control-panel_'+i+'_post').slideUp();
-                                }
-                            }
-                        });
-                    });
-                </script>
+                <label>
+                    <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+                    <select data-customize-setting-link="<?php echo $this->id; ?>">
+                        <?php  $posts = get_posts('numberposts=-1');
+                        foreach ( $posts as $post ) { ?>
+                            <option value="<?php echo $post->ID; ?>" <?php if ( get_theme_mod($this->id) == $post->ID ) echo 'selected="selected"'; ?>><?php echo $post->post_title; ?></option>
+                        <?php } ?>
+                    </select>
+                </label>
                 <?php
             }
         }
     }
     
-    $wp_customize->add_setting( 'fp_panel_1', array( 
+        $wp_customize->add_setting( 'fp_panel_1', array( 
         'default' => 'latest',
         'sanitize_callback' => 'sanitize_text_field',
         //'transport' => 'postMessage', 
@@ -257,20 +226,7 @@ function amalgamation_customize_register( $wp_customize ) {
             'section' => 'front_page_content',
             'settings' => 'panel_4_post',
     ) ) );
-    $wp_customize->add_setting( 'panel_control_hack', array(
-        'default' => '',
-        'sanitize_callback' => 'sanitize_text_field',
-    ) );
-    $wp_customize->add_control( new Show_Hide_Hack_Control( 
-        $wp_customize,
-        'panel_control_hack',
-        array(
-            'label' => '',
-            'section' => 'front_page_content',
-            'settings' => 'panel_control_hack',
-        )
-    ) );
-    
+
     $wp_customize->add_section( 'archive_length', array( 
         'title' => __( 'Blog Archives', 'amalgamation' ), 
         'description' => __( 'Choose whether blog archive pages show full content or post excerpts.', 'amalgamation' )
@@ -288,8 +244,7 @@ function amalgamation_customize_register( $wp_customize ) {
           'full' => __( 'Full content', 'amalgamation' ), 
           'excerpt' => __( 'Excerpts', 'amalgamation' ), 
       ),
-    ) );
-
+    ) );   
 }
 
 add_action( 'customize_register', 'amalgamation_customize_register' );
@@ -301,3 +256,11 @@ function amalgamation_customize_preview_js() {
 	wp_enqueue_script( 'amalgamation_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20130508', true );
 }
 add_action( 'customize_preview_init', 'amalgamation_customize_preview_js' );
+
+/**
+* Allows dynamic hide/show of panel content options
+*/
+function amalgamation_customizer_controls_js() {
+	wp_enqueue_script( 'amalgamation_customizer_controls', get_template_directory_uri() . '/js/customizer-controls.js', array( 'jquery' ), '20130508', true );
+}
+add_action( 'customize_controls_enqueue_scripts', 'amalgamation_customizer_controls_js' );
