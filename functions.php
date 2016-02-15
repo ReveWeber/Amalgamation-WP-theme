@@ -61,22 +61,21 @@ function amalgamation_setup() {
 		'default-image' => '',
 	) ) );
     
-    /**
-     * Enables the Excerpt meta box in Page edit screen.
-     */
-    function amalgamation_add_excerpt_support_for_pages() {
-        add_post_type_support( 'page', 'excerpt' );
-    }
-    add_action( 'init', 'amalgamation_add_excerpt_support_for_pages' );
 }
 endif; // amalgamation_setup
 add_action( 'after_setup_theme', 'amalgamation_setup' );
 
 /**
+ * Enables the Excerpt meta box in Page edit screen.
+ */
+function amalgamation_add_excerpt_support_for_pages() {
+    add_post_type_support( 'page', 'excerpt' );
+}
+add_action( 'init', 'amalgamation_add_excerpt_support_for_pages' );
+
+/**
  * Set the content width in pixels, based on the theme's design and stylesheet.
- *
  * Priority 0 to make it available to lower priority callbacks.
- *
  * @global int $content_width
  */
 function amalgamation_content_width() {
@@ -86,7 +85,6 @@ add_action( 'after_setup_theme', 'amalgamation_content_width', 0 );
 
 /**
  * Register widget area.
- *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
 function amalgamation_widgets_init() {
@@ -130,7 +128,7 @@ add_action( 'wp_enqueue_scripts', 'amalgamation_scripts' );
 /**
  * Implement the Custom Header feature.
  */
-require get_template_directory() . '/inc/custom-header.php';
+//require get_template_directory() . '/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
@@ -151,3 +149,18 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 //require get_template_directory() . '/inc/jetpack.php';
+
+/**
+ * Add featured images to RSS feed
+ */
+
+function featuredtoRSS($content) {
+    global $post;
+    if ( has_post_thumbnail( $post->ID ) ){
+        $content = '<div>' . get_the_post_thumbnail( $post->ID, 'medium', array( 'style' => 'float:left; margin-right:16px; margin-bottom:16px;' ) ) . '</div>' . $content;
+    }
+    return $content;
+}
+ 
+add_filter('the_excerpt_rss', 'featuredtoRSS');
+add_filter('the_content_feed', 'featuredtoRSS');

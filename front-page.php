@@ -7,53 +7,60 @@
  * @package Amalgamation
  */
 
+if ( 'posts' == get_option( 'show_on_front' ) ) {
+    include( get_home_template() ); 
+} else {
 get_header( 'front' ); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main front-page-panel-wrapper" role="main">
 
+            <!-- functions below are defined in inc/customizer.php -->
             <div class="front-page-pair">
-            <div id="front-page-panel-1" class="front-page-panel">
-            <?php 
-                $my_query = new WP_Query( array ( 'pagename' => 'about',) );
-                while ( $my_query->have_posts() ) : $my_query->the_post();
-                    get_template_part( 'template-parts/content', 'front' );
-                endwhile; 
-            ?>
-            </div>
-            
-            <div id="front-page-panel-2" class="front-page-panel">
-                <div class="supertitle">Latest Blog Post (<a href="<?php echo esc_url( home_url( '/blog/' ) ); ?>">see all</a>)</div>
-            <?php 
-                $my_query = new WP_Query( array ( 'post_type' => 'post', 'posts_per_page' => 1, 'ignore_sticky_posts' => 1,) );
-                while ( $my_query->have_posts() ) : $my_query->the_post();
-                    get_template_part( 'template-parts/content', 'front-posts' );
-                endwhile; 
-            ?>            
-            </div>
+                <div id="front-page-panel-1" class="front-page-panel">
+                    <?php if (get_theme_mod('fp_panel_1') == 'post') {
+                        Amalgamation_Front_Panel_Post( intval( get_theme_mod( 'panel_1_post' ) ) );
+                    } elseif (get_theme_mod('fp_panel_1') == 'page') {
+                        Amalgamation_Front_Panel_Page( intval( get_theme_mod( 'panel_1_page' ) ) );
+                    } else { 
+                        Amalgamation_Front_Panel_Latest();
+                    } ?>
                 </div>
+
+                <div id="front-page-panel-2" class="front-page-panel">
+                    <?php if (get_theme_mod('fp_panel_2') == 'post') {
+                        Amalgamation_Front_Panel_Post( intval( get_theme_mod( 'panel_2_post' ) ) );
+                    } elseif (get_theme_mod('fp_panel_2') == 'page') {
+                        Amalgamation_Front_Panel_Page( intval( get_theme_mod( 'panel_2_page' ) ) );
+                    } else { 
+                        Amalgamation_Front_Panel_Latest();
+                    } ?>
+                </div>
+            </div>
             
             <div class="front-page-pair">
-            <div id="front-page-panel-3" class="front-page-panel">
-            <?php 
-                $my_query = new WP_Query( array ( 'pagename' => 'tech',) );
-                while ( $my_query->have_posts() ) : $my_query->the_post();
-                    get_template_part( 'template-parts/content', 'front' );
-                endwhile; 
-            ?>            
-            </div>
+                <div id="front-page-panel-3" class="front-page-panel">
+                    <?php if (get_theme_mod('fp_panel_3') == 'post') {
+                        Amalgamation_Front_Panel_Post( intval( get_theme_mod( 'panel_3_post' ) ) );
+                    } elseif (get_theme_mod('fp_panel_3') == 'page') {
+                        Amalgamation_Front_Panel_Page( intval( get_theme_mod( 'panel_3_page' ) ) );
+                    } else { 
+                        Amalgamation_Front_Panel_Latest();
+                    } ?>
+                </div>
 
-            <div id="front-page-panel-4" class="front-page-panel">
-            <?php 
-                $my_query = new WP_Query( array ( 'pagename' => 'craft',) );
-                while ( $my_query->have_posts() ) : $my_query->the_post();
-                    get_template_part( 'template-parts/content', 'front' );
-                endwhile; 
-            ?>            
-            </div>
+                <div id="front-page-panel-4" class="front-page-panel">
+                    <?php if (get_theme_mod('fp_panel_4') == 'post') {
+                        Amalgamation_Front_Panel_Post( intval( get_theme_mod( 'panel_4_post' ) ) );
+                    } elseif (get_theme_mod('fp_panel_4') == 'page') {
+                        Amalgamation_Front_Panel_Page( intval( get_theme_mod( 'panel_4_page' ) ) );
+                    } else { 
+                        Amalgamation_Front_Panel_Latest();
+                    } ?>
+                </div>
             </div>
             
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
-<?php get_footer( 'front' ); ?>
+<?php get_footer( 'front' ); } // end else statement ?>
