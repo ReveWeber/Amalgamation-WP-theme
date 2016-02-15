@@ -121,15 +121,28 @@ acronym {
     cursor: help;
 }
 blockquote:before,
-blockquote:after,
-q:before,
-q:after {
+blockquote:after {
     content: "";
 }
-blockquote,
-q {
+blockquote {
     quotes: "" "";
     margin: 0 1.5em;
+    font-style: italic;
+    clear: both;
+}
+blockquote p {
+    padding: 1.5em;
+    border-top: 1px solid #300;
+    border-bottom: 1px solid #300;
+}
+q {
+    quotes: "“" "”" "‘" "’";
+}
+q:before {
+    content: open-quote;
+}
+q:after {
+    content: close-quote;
 }
 blockquote cite {
     display: block;

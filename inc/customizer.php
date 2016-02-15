@@ -8,6 +8,26 @@
 /*
 * Front page helper functions
 */
+
+// todo: ajax load of contents of front page panels
+/*
+add_action( 'amalgamation_fp_ajax_load', 'amalgamation_fp_ajax_response' );
+
+function amalgamation_fp_ajax_response() {
+    
+    $content_type = $_POST['content_type'];
+    $content_id = intval($_POST['content_id']);
+    if ( $content_type == 'post' ) {
+        echo Amalgamation_Front_Panel_Post($content_id);
+    } else if ( $content_type == 'page' ) {
+        echo Amalgamation_Front_Panel_Page($content_id);
+    } else {
+        echo Amalgamation_Front_Panel_Latest();
+    }
+    die();
+}
+*/
+
 function Amalgamation_Front_Panel_Post($selectedPostId) {
     $my_query = new WP_Query( array ( 'p' => $selectedPostId,) );
     while ( $my_query->have_posts() ) : $my_query->the_post();
@@ -38,9 +58,10 @@ function Amalgamation_Front_Panel_Latest() {
 function amalgamation_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
-	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
     $wp_customize->remove_section('header_image');
     $wp_customize->remove_section('background_image');
+    $wp_customize->remove_control('background_color');
+    $wp_customize->remove_control('header_textcolor');
     
     $wp_customize->add_section( 'front_page_content', array( 
         'title' => __( 'Front Page Content', 'amalgamation' ), 
@@ -67,7 +88,8 @@ function amalgamation_customize_register( $wp_customize ) {
         }
     }
     
-        $wp_customize->add_setting( 'fp_panel_1', array( 
+    // todo: give these live update
+    $wp_customize->add_setting( 'fp_panel_1', array( 
         'default' => 'latest',
         'sanitize_callback' => 'sanitize_text_field',
         //'transport' => 'postMessage', 
@@ -254,6 +276,9 @@ add_action( 'customize_register', 'amalgamation_customize_register' );
  */
 function amalgamation_customize_preview_js() {
 	wp_enqueue_script( 'amalgamation_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20130508', true );
+    //$php_array = array( 'admin_ajax' => admin_url( 'admin-ajax.php' ) );
+    //wp_localize_script( 'amalgamation_customizer', 'php_array', $php_array );
+ 
 }
 add_action( 'customize_preview_init', 'amalgamation_customize_preview_js' );
 
