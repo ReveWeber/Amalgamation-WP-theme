@@ -10,11 +10,10 @@
 */
 
 // todo: ajax load of contents of front page panels
-/*
-add_action( 'amalgamation_fp_ajax_load', 'amalgamation_fp_ajax_response' );
+add_action( 'wp_ajax_nopriv_amalgamation_fp_ajax_load', 'amalgamation_fp_ajax_response' );
+add_action( 'wp_ajax_amalgamation_fp_ajax_load', 'amalgamation_fp_ajax_response' );
 
 function amalgamation_fp_ajax_response() {
-    
     $content_type = $_POST['content_type'];
     $content_id = intval($_POST['content_id']);
     if ( $content_type == 'post' ) {
@@ -26,7 +25,6 @@ function amalgamation_fp_ajax_response() {
     }
     die();
 }
-*/
 
 function Amalgamation_Front_Panel_Post($selectedPostId) {
     $my_query = new WP_Query( array ( 'p' => $selectedPostId,) );
@@ -88,11 +86,10 @@ function amalgamation_customize_register( $wp_customize ) {
         }
     }
     
-    // todo: give these live update
     $wp_customize->add_setting( 'fp_panel_1', array( 
         'default' => 'latest',
         'sanitize_callback' => 'sanitize_text_field',
-        //'transport' => 'postMessage', 
+        'transport' => 'postMessage', 
     ) );
     $wp_customize->add_control( 'fp_panel_1', array(
       'label' => __( 'Content of panel 1 (upper left)', 'amalgamation' ),
@@ -108,7 +105,7 @@ function amalgamation_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'panel_1_page', array(
         'default' => '', 
         'sanitize_callback' => 'sanitize_text_field',
-        //'transport' => 'postMessage',
+        'transport' => 'postMessage',
     ) );
     $wp_customize->add_control( 'panel_1_page', array(
         'label' => __( 'Page to show', 'amalgamation' ),
@@ -118,7 +115,7 @@ function amalgamation_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'panel_1_post', array(
         'default' => '',
         'sanitize_callback' => 'sanitize_text_field',
-        //'transport' => 'postMessage',
+        'transport' => 'postMessage',
     ) );
     $wp_customize->add_control( new Post_Dropdown_Control( 
         $wp_customize, 
@@ -132,7 +129,7 @@ function amalgamation_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'fp_panel_2', array( 
         'default' => 'latest',
         'sanitize_callback' => 'sanitize_text_field',
-        //'transport' => 'postMessage', 
+        'transport' => 'postMessage', 
     ) );
     $wp_customize->add_control( 'fp_panel_2', array(
       'label' => __( 'Content of panel 2 (upper right)', 'amalgamation' ),
@@ -148,7 +145,7 @@ function amalgamation_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'panel_2_page', array(
         'default' => '', 
         'sanitize_callback' => 'sanitize_text_field',
-        //'transport' => 'postMessage',
+        'transport' => 'postMessage',
     ) );
     $wp_customize->add_control( 'panel_2_page', array(
         'label' => __( 'Page to show', 'amalgamation' ),
@@ -158,7 +155,7 @@ function amalgamation_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'panel_2_post', array(
         'default' => '',
         'sanitize_callback' => 'sanitize_text_field',
-        //'transport' => 'postMessage',
+        'transport' => 'postMessage',
     ) );
     $wp_customize->add_control( new Post_Dropdown_Control( 
         $wp_customize, 
@@ -172,7 +169,7 @@ function amalgamation_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'fp_panel_3', array( 
         'default' => 'latest',
         'sanitize_callback' => 'sanitize_text_field',
-        //'transport' => 'postMessage', 
+        'transport' => 'postMessage', 
     ) );
     $wp_customize->add_control( 'fp_panel_3', array(
       'label' => __( 'Content of panel 3 (lower left)', 'amalgamation' ),
@@ -188,7 +185,7 @@ function amalgamation_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'panel_3_page', array(
         'default' => '', 
         'sanitize_callback' => 'sanitize_text_field',
-        //'transport' => 'postMessage',
+        'transport' => 'postMessage',
     ) );
     $wp_customize->add_control( 'panel_3_page', array(
         'label' => __( 'Page to show', 'amalgamation' ),
@@ -198,7 +195,7 @@ function amalgamation_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'panel_3_post', array(
         'default' => '',
         'sanitize_callback' => 'sanitize_text_field',
-        //'transport' => 'postMessage',
+        'transport' => 'postMessage',
     ) );
     $wp_customize->add_control( new Post_Dropdown_Control( 
         $wp_customize, 
@@ -212,7 +209,7 @@ function amalgamation_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'fp_panel_4', array( 
         'default' => 'latest',
         'sanitize_callback' => 'sanitize_text_field',
-        //'transport' => 'postMessage', 
+        'transport' => 'postMessage', 
     ) );
     $wp_customize->add_control( 'fp_panel_4', array(
       'label' => __( 'Content of panel 4 (lower right)', 'amalgamation' ),
@@ -228,7 +225,7 @@ function amalgamation_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'panel_4_page', array(
         'default' => '', 
         'sanitize_callback' => 'sanitize_text_field',
-        //'transport' => 'postMessage',
+        'transport' => 'postMessage',
     ) );
     $wp_customize->add_control( 'panel_4_page', array(
         'label' => __( 'Page to show', 'amalgamation' ),
@@ -238,7 +235,7 @@ function amalgamation_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'panel_4_post', array(
         'default' => '',
         'sanitize_callback' => 'sanitize_text_field',
-        //'transport' => 'postMessage',
+        'transport' => 'postMessage',
     ) );
     $wp_customize->add_control( new Post_Dropdown_Control( 
         $wp_customize, 
@@ -275,9 +272,9 @@ add_action( 'customize_register', 'amalgamation_customize_register' );
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
 function amalgamation_customize_preview_js() {
-	wp_enqueue_script( 'amalgamation_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20130508', true );
-    //$php_array = array( 'admin_ajax' => admin_url( 'admin-ajax.php' ) );
-    //wp_localize_script( 'amalgamation_customizer', 'php_array', $php_array );
+	wp_enqueue_script( 'amalgamation_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20160308', true );
+    $php_array = array( 'admin_ajax' => admin_url( 'admin-ajax.php' ) );
+    wp_localize_script( 'amalgamation_customizer', 'php_array', $php_array );
  
 }
 add_action( 'customize_preview_init', 'amalgamation_customize_preview_js' );
