@@ -115,7 +115,7 @@ function amalgamation_custom_sizes( $sizes ) {
  * Enqueue scripts and styles.
  */
 function amalgamation_scripts() {
-	wp_enqueue_style( 'amalgamation-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'amalgamation-style', get_stylesheet_uri(), '', '20160314' );
 
 	wp_enqueue_script( 'amalgamation-js-functions', get_template_directory_uri() . '/js/functions.js', array(), '20151216', true );
 
@@ -125,10 +125,12 @@ function amalgamation_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'amalgamation_scripts' );
 
-/**
- * Implement the Custom Header feature.
- */
-//require get_template_directory() . '/inc/custom-header.php';
+/* apply styling to Visual editor */
+
+function amalgamation_add_editor_styles() {
+    add_editor_style( get_stylesheet_directory_uri() . '/inc/editor-style.css' );
+}
+add_action( 'admin_init', 'amalgamation_add_editor_styles' );
 
 /**
  * Custom template tags for this theme.
@@ -156,8 +158,14 @@ require get_template_directory() . '/inc/customizer.php';
 
 function featuredtoRSS($content) {
     global $post;
+    $imagealignment = 'left';
+    $margindirection = 'right';
+    if (is_rtl()) {
+        $imagealignment = 'right';
+        $margindirection = 'left';
+    }
     if ( has_post_thumbnail( $post->ID ) ){
-        $content = '<div>' . get_the_post_thumbnail( $post->ID, 'medium', array( 'style' => 'float:left; margin-right:16px; margin-bottom:16px;' ) ) . '</div>' . $content;
+        $content = '<div>' . get_the_post_thumbnail( $post->ID, 'medium', array( 'style' => 'float:'.$imagealignment.'; margin-'.$margindirection.':16px; margin-bottom:16px;' ) ) . '</div>' . $content;
     }
     return $content;
 }

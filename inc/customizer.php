@@ -67,7 +67,8 @@ function amalgamation_customize_register( $wp_customize ) {
     ) );
     
     // post dropdown custom control modified from Tom Rhodes'
-    // https://github.com/tommusrhodus/wp-cusomizer-posts-dropdown    
+    // https://github.com/tommusrhodus/wp-cusomizer-posts-dropdown 
+    // [no longer accessible]
     if (class_exists('WP_Customize_Control')) {
         class Post_Dropdown_Control extends WP_Customize_Control {
             public function render_content() {

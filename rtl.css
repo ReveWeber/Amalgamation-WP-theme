@@ -1,17 +1,64 @@
 /*
 Theme Name: Amalgamation
-
-Adding support for language written in a Right To Left (RTL) direction is easy -
-it's just a matter of overwriting all the horizontal positioning attributes
-of your CSS stylesheet in a separate stylesheet file named rtl.css.
-
+Adds support for languages written Right To Left (RTL).
 http://codex.wordpress.org/Right_to_Left_Language_Support
-
 */
 
-/*
 body {
 	direction: rtl;
 	unicode-bidi: embed;
 }
-*/
+blockquote cite {
+    float: left;
+}
+td,
+th {
+    padding: 0;
+    padding-left: 1.5em;
+}
+td:last-child,
+th:last-child {
+    padding-left: 0;
+}
+.main-navigation {
+    float: right;
+}
+.main-navigation ul {
+    padding-right: 0;
+}
+.main-navigation li {
+    float: right;
+}
+.main-navigation ul ul {
+    float: right;
+    left: 999em;
+}
+.main-navigation ul ul ul {
+    left: 999em;
+}
+.menu-toggle {
+    float: left;
+}
+.comment-navigation .nav-previous,
+.posts-navigation .nav-previous,
+.post-navigation .nav-previous {
+    float: right;
+}
+.comment-navigation .nav-next,
+.posts-navigation .nav-next,
+.post-navigation .nav-next {
+    float: left;
+    text-align: left;
+}
+.site-description {
+    float: left;
+}
+.more-link {
+    float: left;
+}
+.bypostauthor > article {
+    border-right: 1px solid #300;
+    padding-right: 1em;
+    padding-left: 0;
+    border-left: none;
+}
