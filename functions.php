@@ -115,7 +115,7 @@ function amalgamation_custom_sizes( $sizes ) {
  * Enqueue scripts and styles.
  */
 function amalgamation_scripts() {
-	wp_enqueue_style( 'amalgamation-style', get_stylesheet_uri(), '', '20160314' );
+	wp_enqueue_style( 'amalgamation-style', get_stylesheet_uri(), '', '20160315' );
 
 	wp_enqueue_script( 'amalgamation-js-functions', get_template_directory_uri() . '/js/functions.js', array(), '20151216', true );
 

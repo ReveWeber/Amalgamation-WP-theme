@@ -9,7 +9,6 @@
 * Front page helper functions
 */
 
-// todo: ajax load of contents of front page panels
 add_action( 'wp_ajax_nopriv_amalgamation_fp_ajax_load', 'amalgamation_fp_ajax_response' );
 add_action( 'wp_ajax_amalgamation_fp_ajax_load', 'amalgamation_fp_ajax_response' );
 
@@ -87,13 +86,20 @@ function amalgamation_customize_register( $wp_customize ) {
         }
     }
     
+    $odd = "left";
+    $even = "right";
+    if (is_rtl()) {
+        $odd = "right";
+        $even = "left";
+    }
+    
     $wp_customize->add_setting( 'fp_panel_1', array( 
         'default' => 'latest',
         'sanitize_callback' => 'sanitize_text_field',
         'transport' => 'postMessage', 
     ) );
     $wp_customize->add_control( 'fp_panel_1', array(
-      'label' => __( 'Content of panel 1 (upper left)', 'amalgamation' ),
+      'label' => __( 'Content of panel 1 (upper '.$odd.')', 'amalgamation' ),
       'description' => __( 'Includes title, excerpt, and featured image if any.', 'amalgamation' ),
       'section' => 'front_page_content',
       'type' => 'radio',
@@ -133,7 +139,7 @@ function amalgamation_customize_register( $wp_customize ) {
         'transport' => 'postMessage', 
     ) );
     $wp_customize->add_control( 'fp_panel_2', array(
-      'label' => __( 'Content of panel 2 (upper right)', 'amalgamation' ),
+      'label' => __( 'Content of panel 2 (upper '.$even.')', 'amalgamation' ),
       'description' => __( 'Includes title, excerpt, and featured image if any.', 'amalgamation' ),
       'section' => 'front_page_content',
       'type' => 'radio',
@@ -173,7 +179,7 @@ function amalgamation_customize_register( $wp_customize ) {
         'transport' => 'postMessage', 
     ) );
     $wp_customize->add_control( 'fp_panel_3', array(
-      'label' => __( 'Content of panel 3 (lower left)', 'amalgamation' ),
+      'label' => __( 'Content of panel 3 (lower '.$odd.')', 'amalgamation' ),
       'description' => __( 'Includes title, excerpt, and featured image if any.', 'amalgamation' ),
       'section' => 'front_page_content',
       'type' => 'radio',
@@ -213,7 +219,7 @@ function amalgamation_customize_register( $wp_customize ) {
         'transport' => 'postMessage', 
     ) );
     $wp_customize->add_control( 'fp_panel_4', array(
-      'label' => __( 'Content of panel 4 (lower right)', 'amalgamation' ),
+      'label' => __( 'Content of panel 4 (lower '.$even.')', 'amalgamation' ),
       'description' => __( 'Includes title, excerpt, and featured image if any.', 'amalgamation' ),
       'section' => 'front_page_content',
       'type' => 'radio',

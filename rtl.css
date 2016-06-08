@@ -62,3 +62,18 @@ th:last-child {
     padding-left: 0;
     border-left: none;
 }
+.page-content h1,
+.entry-content h1,
+.page-content h2,
+.entry-content h2 {
+    margin-left: 0;
+    margin-right: -2.25rem;
+}
+@media screen and (max-width: 750px) {
+    .page-content h1,
+    .entry-content h1,
+    .page-content h2,
+    .entry-content h2 {
+        margin-right: 0;
+    }
+}

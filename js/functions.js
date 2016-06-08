@@ -5,6 +5,34 @@
  * Handles toggling the navigation menu for small screens, enables tab
  * support for dropdown menus, helps with accessibility for keyboard only users.
  */
+
+// element-closest polyfill | CC0-1.0 | github.com/jonathantneal/closest
+
+if (typeof Element.prototype.matches !== 'function') {
+    Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.webkitMatchesSelector || function matches(selector) {
+        var element = this;
+        var elements = (element.document || element.ownerDocument).querySelectorAll(selector);
+        var index = 0;
+        while (elements[index] && elements[index] !== element) {
+            ++index;
+        }
+        return Boolean(elements[index]);
+    };
+}
+
+if (typeof Element.prototype.closest !== 'function') {
+    Element.prototype.closest = function closest(selector) {
+        var element = this;
+        while (element && element.nodeType === 1) {
+            if (element.matches(selector)) {
+                return element;
+            }
+            element = element.parentNode;
+        }
+        return null;
+    };
+}
+
 ( function() {
 	var container, button, menu, links, subMenus;
 
@@ -42,7 +70,18 @@
 			menu.setAttribute( 'aria-expanded', 'true' );
 		}
 	};
-
+        
+    document.addEventListener('click', function (event) {
+        console.log('heard a click on ' + event.target);
+        if (!(event.target.closest("#site-navigation"))) {
+            if ( -1 !== container.className.indexOf( 'toggled' ) ) {
+                container.className = container.className.replace( ' toggled', '' );
+                button.setAttribute( 'aria-expanded', 'false' );
+                menu.setAttribute( 'aria-expanded', 'false' );
+            }
+        }
+    });
+    
 	// Get all the link elements within the menu.
 	links    = menu.getElementsByTagName( 'a' );
 	subMenus = menu.getElementsByTagName( 'ul' );

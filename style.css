@@ -789,6 +789,12 @@ a:active {
 .entry-summary {
     margin: 1em 2em 0;
 }
+.page-content h1,
+.entry-content h1,
+.page-content h2,
+.entry-content h2 {
+    margin-left: -2.25rem;
+}
 .page-links {
     clear: both;
     margin: 0 0 1.5em;
@@ -864,6 +870,12 @@ a:active {
     .entry-summary {
         margin-left: 0;
         margin-right: 0;
+    }
+    .page-content h1,
+    .entry-content h1,
+    .page-content h2,
+    .entry-content h2 {
+        margin-left: 0;
     }
 }
 
