@@ -14,6 +14,10 @@
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<?php if(is_single() && has_excerpt()){ echo '<meta name="description" content="'; 
+echo wp_strip_all_tags( get_the_excerpt(), true );
+echo '" />';} ?>
+
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 <!--[if lt IE 10]>
