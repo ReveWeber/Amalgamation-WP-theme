@@ -77,6 +77,30 @@ function amalgamation_entry_footer() {
 }
 endif;
 
+if ( ! function_exists( 'amalgamation_archive_entry_footer' ) ) :
+	/**
+	 * Prints HTML with meta information for the categories [and tags].
+	 */
+	function amalgamation_archive_entry_footer() {
+		// Hide category and tag text for pages.
+		if ( 'post' === get_post_type() ) {
+			/* translators: used between list items, there is a space after the comma */
+			$categories_list = get_the_category_list( esc_html__( ', ', 'amalgamation' ) );
+			if ( $categories_list && amalgamation_categorized_blog() ) {
+				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s. ', 'amalgamation' ) . '</span>', $categories_list ); // WPCS: XSS OK.
+			}
+	
+			// TODO do I want to show tags or only categories on the archive page?
+
+			/* translators: used between list items, there is a space after the comma */
+			// $tags_list = get_the_tag_list( '', esc_html__( ', ', 'amalgamation' ) );
+			// if ( $tags_list ) {
+			// 	printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s. ', 'amalgamation' ) . '</span>', $tags_list ); // WPCS: XSS OK.
+			// }
+		}
+	}
+	endif;
+
 /**
  * Returns true if a blog has more than 1 category.
  *

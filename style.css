@@ -529,11 +529,13 @@ a:active {
 }
 .main-navigation .current_page_item,
 .main-navigation .current-menu-item,
+.main-navigation .current_page_parent,
 .main-navigation .current_page_ancestor {
     background: #fffff2;
 }
 .main-navigation .current_page_item > a,
 .main-navigation .current-menu-item > a,
+.main-navigation .current_page_parent > a,
 .main-navigation .current_page_ancestor > a {
     font-weight: bold;
 }
@@ -795,6 +797,9 @@ a:active {
 .entry-content h2 {
     margin-left: -2.25rem;
 }
+.entry-content a:first-child + p {
+    margin-top: 0;
+}
 .page-links {
     clear: both;
     margin: 0 0 1.5em;
@@ -877,6 +882,19 @@ a:active {
     .entry-content h2 {
         margin-left: 0;
     }
+}
+
+/* Archive-Specific */
+
+.taxonomy-description {
+    border-top: 1px solid #300;
+    border-bottom: 1px solid #300;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.taxonomy-description p {
+    margin: 1em;
 }
 
 /* Front Page */
