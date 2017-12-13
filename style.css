@@ -694,36 +694,22 @@ a:active {
 .masonry-wrapper {
     /* Masonry/column container */
     background: #330000;
-    padding-top: 1em;
-    -moz-column-count: 3;
-    -webkit-column-count: 3;
-    column-count: 3;
+    padding: 1em;
+    -moz-columns: 3 200px;
+    -webkit-columns: 3 200px;
+    columns: 3 200px;
     -moz-column-gap: 1em;
     -webkit-column-gap: 1em;
+    column-fill: balance;
     column-gap: 1em;
     margin-top: 1em;
     margin-bottom: 0;
-    padding-left: 1em;
-    padding-right: 1em;
-}
-@media screen and (max-width: 800px) {
-    .masonry-wrapper {
-        -moz-column-count: 2;
-        -webkit-column-count: 2;
-        column-count: 2;
-    }
-}
-@media screen and (max-width: 600px) {
-    .masonry-wrapper {
-        -moz-column-count: 1;
-        -webkit-column-count: 1;
-        column-count: 1;
-    }
 }
 .masonry-item {
     /* Masonry bricks/column entries */
     background-color: #fffff2;
-    display: inline-block;
+    /* this kills column balancing in chrome. why?
+    display: inline-block; */
     position: relative;
     margin: 0 0 1em;
     width: 100%;
