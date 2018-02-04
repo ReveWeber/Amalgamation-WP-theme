@@ -421,6 +421,16 @@ dd {
     margin: 0 1.5em 1.5em;
 }
 
+.checkered-table tr:nth-child(2n) td:nth-child(2n), .checkered-table tr:nth-child(2n+1) td:nth-child(2n+1) {
+    background: #fffff2;
+}
+.checkered-table tr:nth-child(2n+1) td:nth-child(2n), .checkered-table tr:nth-child(2n) td:nth-child(2n+1) {
+    background: #f0f0f7; /* v. light lilac, faded from #494999 */
+}
+.checkered-table th, .checkered-table td {
+    padding: 4px 10px;
+}
+
 /*--------------------------------------------------------------
 1.3 Images and Links
 --------------------------------------------------------------*/

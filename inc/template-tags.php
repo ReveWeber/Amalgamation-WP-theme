@@ -90,13 +90,11 @@ if ( ! function_exists( 'amalgamation_archive_entry_footer' ) ) :
 				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s. ', 'amalgamation' ) . '</span>', $categories_list ); // WPCS: XSS OK.
 			}
 	
-			// TODO do I want to show tags or only categories on the archive page?
-
 			/* translators: used between list items, there is a space after the comma */
-			// $tags_list = get_the_tag_list( '', esc_html__( ', ', 'amalgamation' ) );
-			// if ( $tags_list ) {
-			// 	printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s. ', 'amalgamation' ) . '</span>', $tags_list ); // WPCS: XSS OK.
-			// }
+			$tags_list = get_the_tag_list( '', esc_html__( ', ', 'amalgamation' ) );
+			if ( $tags_list ) {
+				printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s. ', 'amalgamation' ) . '</span>', $tags_list ); // WPCS: XSS OK.
+			}
 		}
 	}
 	endif;
