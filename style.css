@@ -237,6 +237,8 @@ tt,
 var {
     font-family: Consolas, 'Lucida Console', 'Lucida Sans Typewriter', monaco, 'Bitstream Vera Sans Mono', monospace;
     font-size: 0.9375em;
+    background: #fffff2;
+    padding: 0 4px;
 }
 
 /*--------------------------------------------------------------
@@ -692,11 +694,18 @@ a:active {
     max-width: 100%;
 }
 
-/* Search widget. */
+.widget_search {
+	overflow: hidden;
+}
+
+.widget_search .search-field {
+	margin-bottom: 0.5em;
+}
 
 .widget_search .search-submit {
-    display: none;
+	float: right;
 }
+
 .widget ul,
 .widget ol {
     margin: 0 0 1.5em;
