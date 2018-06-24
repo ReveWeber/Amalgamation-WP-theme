@@ -56,9 +56,9 @@ html {
 body {
     font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
     -webkit-font-kerning: normal;
-            font-kerning: normal;
+    font-kerning: normal;
     -webkit-font-variant-ligatures: common-ligatures, contextual;
-            font-variant-ligatures: common-ligatures, contextual;
+    font-variant-ligatures: common-ligatures, contextual;
     -ms-font-feature-settings: "kern", "liga", "clig", "alt";
     -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
     font-feature-settings: "kern", "liga", "clig", "calt";
@@ -710,6 +710,23 @@ a:active {
 .widget ol {
     margin: 0 0 1.5em;
 }
+
+.textwidget p {
+    margin-bottom: 0;
+}
+
+.widget_text p:first-child {
+    margin-top: 0;
+}
+
+.widget-title {
+    margin-top: 0;
+}
+
+.widget_nav_menu ul {
+    margin-bottom: 0;
+}    
+
 .masonry-wrapper {
     /* Masonry/column container */
     background: #330000;
